@@ -2,20 +2,20 @@ name: pyinstaller
 on: workflow_dispatch 
 
 jobs:
-    # build-on-windows:
-    #     runs-on: windows-2022
-    #     steps:
-    #         - name: checkout code
-    #           uses: actions/checkout@v3
-    #         - name: install pyinstaller
-    #           run: pip install pyinstaller
-    #         - name: build exe
-    #           run: pyinstaller sha256.py -F
-    #         - name: Archive code coverage results
-    #           uses: actions/upload-artifact@v4
-    #           with:
-    #             name: sha256-windows-code-coverage-report
-    #             path: dist/sha256.exe
+    build-on-windows:
+        runs-on: windows-2022
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v3
+            - name: install pyinstaller
+              run: pip install pyinstaller
+            - name: build exe
+              run: pyinstaller sha256.py -F
+            - name: Archive code coverage results
+              uses: actions/upload-artifact@v4
+              with:
+                name: sha256-windows-code-coverage-report
+                path: dist/sha256.exe
     build-on-linux:
         runs-on: ubuntu-20.04
         steps: 
@@ -44,3 +44,15 @@ jobs:
               with:
                 name: sha256-macos-code-coverage-report
                 path: dist/sha256
+
+    test-on-windows:
+        runs-on: windows-2022
+        steps:
+            - name: download exe file
+              uses: actions/download-artifact@v4
+              with:
+                name: sha256-windows-exe
+            - name: test exe file 
+              run: | 
+                ls 
+                ./sha256.exr sha267.exe
