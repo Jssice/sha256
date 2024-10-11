@@ -32,7 +32,6 @@ jobs:
                 path: dist/sha256
     build-on-mac:
         runs-on: macos-12
-        needs: build-on-windows
         steps:
             - name: checkou code
               uses: actions/checkout@v3
@@ -47,6 +46,7 @@ jobs:
                 path: dist/sha256
 
     test-on-windows:
+        needs: build-on-windows
         runs-on: windows-2022
         steps:
             - name: download exe file
@@ -57,3 +57,29 @@ jobs:
               run: | 
                 ls 
                 ./sha256.exr sha267.exe
+    test-on-linux:
+        runs-on: ubuntu-20.04
+        needs: build-on-linux
+        steps:
+            - name: download binary 
+              uses: action/download-artifact@v4
+              with: 
+                name: sha256-linux
+            - name: test binary file
+              run: |
+                ls 
+                chmod +x sha256
+                ./sha256 sha256
+    test-on-macos:
+        runs-on: macos-12
+        needs: build-on-mac
+        steps:
+            - name: download binary 
+              uses: action/download-artifact@v4
+              with: 
+                name: sha256-mac
+            - name: test binary file
+              run: |
+                ls 
+                chmod +x sha256
+                ./sha256 sha256
