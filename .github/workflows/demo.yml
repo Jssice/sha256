@@ -10,5 +10,5 @@ jobs:
             - name: install pyinstaller
               run: pip install pyinstaller
             - name: build exe
-              run: pyinstaller sh256.py -F
+              run: pyinstaller sha256.py -F
             
