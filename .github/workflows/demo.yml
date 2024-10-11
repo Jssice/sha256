@@ -14,7 +14,7 @@ jobs:
     #         - name: Archive code coverage results
     #           uses: actions/upload-artifact@v4
     #           with:
-    #             name: sha256-windows-code-coverage-report
+    #             name: sha256-windows-exe
     #             path: dist/sha256.exe
     build-on-linux:
         runs-on: ubuntu-20.04
