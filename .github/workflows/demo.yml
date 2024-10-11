@@ -28,7 +28,7 @@ jobs:
             - name: Archive code coverage results
               uses: actions/upload-artifact@v4
               with:
-                name: sha256-linux-code-coverage-report
+                name: sha256-linux
                 path: dist/sha256
     build-on-mac:
         runs-on: macos-12
@@ -42,7 +42,7 @@ jobs:
             - name: Archive code coverage results
               uses: actions/upload-artifact@v4
               with:
-                name: sha256-macos-code-coverage-report
+                name: sha256-macos
                 path: dist/sha256
 
     # test-on-windows:
@@ -77,7 +77,7 @@ jobs:
             - name: download binary 
               uses: actions/download-artifact@v4
               with: 
-                name: sha256-mac
+                name: sha256-macos
             - name: test binary file
               run: |
                 ls 
