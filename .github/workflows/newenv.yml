@@ -17,23 +17,23 @@ jobs:
             - name: checkout code
               uses: actions/checkout@v3
             - name: check var from env u
-              run: echo "u=${{env.DB_U}}"
+              run: echo "u=${{env.DB_U}}" # works
             - name: chech env p
-              run: echo "p=${{secrets.DB_PASSWORD}}"
+              run: echo "p=${{secrets.DB_PASSWORD}}" # works
             - name: test with py
-              run: python secrets.py
+              run: python secrets.py # works
     prod-secrets:
         environment: prod
         env: 
             DB_U: ${{vars.DB1_USERNAME}}
-            DB_P: ${{secrets.DB1_PASSWORD}}
+            DB_P: ${{secrets.DB_PASSWORD}}
         runs-on: ubuntu-22.04
         steps:
             - name: checkout code
               uses: actions/checkout@v3
             - name: check var from env u
-              run: echo "u=${{env.DB_U}}"
+              run: echo "u=${{env.DB_U}}" # no works
             - name: chech env p
-              run: echo "p=${{secrets.DB_P}}"
+              run: echo "p=${{secrets.DB_P}}" # no works
             - name: test with py
-              run: python secrets.py
+              run: python secrets.py  # no works
