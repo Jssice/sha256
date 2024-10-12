@@ -1,4 +1,4 @@
-name: workflow_secrets
+name: newenv
 on: 
     workflow_dispatch:
 
