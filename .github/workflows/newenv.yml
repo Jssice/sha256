@@ -19,7 +19,7 @@ jobs:
             - name: check var from env u
               run: echo "u=${{env.DB_U}}"
             - name: chech env p
-              run: echo "p=${{secrets.DB_P}}"
+              run: echo "p=${{secrets.DB_PASSWORD}}"
             - name: test with py
               run: python secrets.py
     prod-secrets:
